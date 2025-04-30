@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+
+header .logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #41644A;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #41644A;
+}
+
+/* Page Header */
+.project-header {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Upload Project Form */
+.upload-project {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    transition: 0.3s ease-in-out;
+}
+
+.upload-project:hover {
+    transform: scale(1.02);
+}
+
+.upload-project form {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-project label {
+    font-weight: 500;
+    margin: 10px 0 5px;
+}
+
+.upload-project input, .upload-project select, .upload-project textarea {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.upload-project input:focus, .upload-project select:focus, .upload-project textarea:focus {
+    border-color: #41644A;
+    outline: none;
+}
+
+/* Project List */
+.project-list {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-card {
+    background: #FFEB8E;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h4 {
+    margin-bottom: 5px;
+    color: #41644A;
+}
+
+.project-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons */
+.btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Spend SkillCoins Button */
+.spend-skillcoins {
+    background: #FF5733;
+    color: white;
+}
+
+.spend-skillcoins:hover {
+    background: #D43F00;
+}
+/* My Projects Section */
+.my-projects {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+.my-projects h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* My Project Cards (Same as Available Projects) */
+.my-project-card {
+    background: #FFEB8E; /* Same as Available Projects */
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.my-project-card:hover {
+    transform: translateY(-5px);
+}
+
+.my-project-card h4 {
+    margin-bottom: 5px;
+    color: #41644A;
+}
+
+.my-project-card p {
+    font-size: 14px;
+    color: #555;
+}

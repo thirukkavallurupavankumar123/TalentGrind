@@ -1,0 +1,184 @@
+<!-- C:\TalentGrind\learnskill.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn a Skill - TalentGrind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="learnskill.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">TalentGrind</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="teachskill.html">Teach Skills</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="learn-header">
+            <h2>Learn a Skill</h2>
+            <p>Browse available skills, spend SkillCoins, and start learning!</p>
+            <input type="text" id="search-bar" placeholder="Search for skills...">
+        </section>
+
+        <section class="skill-list" id="skill-container">
+            <!-- Skills will be dynamically loaded here -->
+        </section>
+    </main>
+
+    <script>
+// Update the fetchSkills function
+async function fetchSkills(query) {
+    try {
+        let url = "http://localhost:5001/api/skills";
+        if (query) {
+            url += `?search=${encodeURIComponent(query)}`;
+        }
+
+        const response = await fetch(url);
+        let skills = await response.json();
+        
+        // Sort by newest first
+        skills.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        displaySkills(skills);
+    } catch (error) {
+        console.error("Error fetching skills:", error);
+    }
+}
+
+// Update the displaySkills function
+function displaySkills(skills) {
+    const container = document.getElementById("skill-container");
+    container.innerHTML = "";
+
+    if (skills.length === 0) {
+        container.innerHTML = "<p>No skills found.</p>";
+        return;
+    }
+
+    skills.forEach(skill => {
+        const skillCard = document.createElement("div");
+        skillCard.classList.add("skill-card");
+
+        skillCard.innerHTML = `
+            <h4>${skill.skillName}</h4>
+            <p><strong>Category:</strong> ${skill.category}</p>
+            <p><strong>Level:</strong> ${skill.level}</p>
+            <p>${skill.description}</p>
+            <p><strong>Cost:</strong> ${skill.skillCoins} SkillCoins</p>
+            
+            <div class="demo-content">
+                <h5>Free Preview</h5>
+                ${skill.demoVideo ? `
+                    <video controls width="300">
+                        <source src="http://localhost:5001/api/skills/demo-video/${skill._id}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                ` : '<p>No demo available</p>'}
+            </div>
+            
+            <div class="paid-content" style="display:none;">
+                <h5>Full Content</h5>
+                <video controls width="300">
+                    <source src="http://localhost:5001/api/skills/video/${skill._id}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                ${skill.pdf ? `
+                    <p><a href="http://localhost:5001/api/skills/pdf/${skill._id}" target="_blank" class="btn btn-secondary">
+                        Download PDF Documentation
+                    </a></p>
+                ` : ''}
+            </div>
+            
+            <button class="btn spend-skillcoins" data-cost="${skill.skillCoins}" data-skill-id="${skill._id}">
+                Spend ${skill.skillCoins} SkillCoins to Access
+            </button>
+        `;
+
+        container.appendChild(skillCard);
+    });
+}
+
+// Add event listener for spending coins
+document.addEventListener('click', async function(event) {
+    if (event.target.classList.contains('spend-skillcoins')) {
+        try {
+            const cost = parseInt(event.target.dataset.cost);
+            const skillId = event.target.dataset.skillId;
+            
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Please log in to spend SkillCoins');
+                return;
+            }
+            
+            const response = await fetch('http://localhost:5001/api/skillcoins/spend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    amount: cost,
+                    skillId: skillId
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                // Update the UI to show the unlocked content
+                alert(`Success! ${data.message} New balance: ${data.balance} SkillCoins`);
+                
+                // Find the parent skill card 
+                const skillCard = event.target.closest('.skill-card');
+                const paidContent = skillCard.querySelector('.paid-content');
+                
+                // Show the paid content
+                if (paidContent) {
+                    paidContent.style.display = 'block';
+                }
+                
+                // Hide the spend button
+                event.target.style.display = 'none';
+                
+                // Update coins display in mainpage
+                const coinsDisplay = document.querySelector('.coins');
+                if (coinsDisplay) {
+                    coinsDisplay.textContent = data.balance;
+                }
+            } else {
+                alert(`Error: ${data.message}`);
+            }
+        } catch (error) {
+            console.error('Error spending SkillCoins:', error);
+            alert('Server error. Please try again later.');
+        }
+    }
+});
+
+// Call fetchSkills on page load to show newest skills
+document.addEventListener('DOMContentLoaded', function() {
+    fetchSkills();
+});
+
+// ✅ Search Functionality - Fetch skills based on input
+document.getElementById("search-bar").addEventListener("input", function () {
+    const query = this.value.trim();
+    fetchSkills(query); // Call API with search query
+});
+
+    </script>
+
+</body>
+</html>

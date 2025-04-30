@@ -1,0 +1,127 @@
+<!-- C:\TalentGrind\teachskill.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teach a Skill - TalentGrind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teach skill.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">TalentGrind</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="teach-header">
+            <h2>Teach a Skill</h2>
+            <p>Share your knowledge and earn SkillCoins by teaching a skill.</p>
+        </section>
+
+        <!-- Teach Skill Form -->
+        <section class="teach-skill-form" >
+            <h3>Submit Your Skill</h3>
+            <form id="teachSkillForm" enctype="multipart/form-data">
+                <label for="skillName">Skill Name:</label>
+                <input type="text" id="skillName" name="skillName" required>
+
+                <label for="category">Skill Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Programming">Programming</option>
+                    <option value="AI/ML">AI/ML</option>
+                    <option value="Design">Design</option>
+                </select>
+
+                <label for="level">Skill Level:</label>
+                <select id="level" name="level" required>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="availability">Availability:</label>
+                <input type="text" id="availability" name="availability" required>
+
+                <label for="skillCoins">Skill Coins:</label>
+                <input type="number" id="skillCoins" name="skillCoins" required>
+
+                <label for="video">Upload Video:</label>
+                <input type="file" id="video" name="video" accept="video/*" required>
+
+                <label for="demoVideo">Upload Demo Video (Optional):</label>
+                <input type="file" id="demoVideo" name="demoVideo" accept="video/*">
+
+                <label for="pdf">Upload PDF (Optional):</label>
+                <input type="file" id="pdf" name="pdf" accept="application/pdf">
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <script src="teachskill.js"></script>
+    <script>
+        document.getElementById("teachSkillForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            // Get token from localStorage
+            const token = localStorage.getItem("token");
+            
+            // Debug: Check if token exists
+            console.log("Token exists:", !!token);
+            if (!token) {
+                alert("You need to log in first!");
+                window.location.href = "firstpage.html";
+                return;
+            }
+            
+            // Rest of your form submission code...
+            try {
+                const formData = new FormData();
+                // Add form fields...
+                
+                // Send with token in header
+                const response = await fetch("http://localhost:5001/api/teach-skill", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                
+                // Check response status
+                if (response.status === 401) {
+                    // Token invalid or expired
+                    alert("Your session has expired. Please log in again.");
+                    localStorage.removeItem("token"); // Clear invalid token
+                    window.location.href = "firstpage.html";
+                    return;
+                }
+                
+                const result = await response.json();
+                if (response.ok) {
+                    alert("Skill submitted successfully!");
+                    document.getElementById("teachSkillForm").reset();
+                } else {
+                    alert(`Error: ${result.message || "Failed to submit skill"}`);
+                }
+            } catch (error) {
+                console.error("Error submitting skill:", error);
+                alert("Error submitting skill. Please try again.");
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentGrind Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainpage.css"> <!-- Using previous CSS styling -->
+    <style>
+        /* Animations */
+        body {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .skill-card, .project-card, .market-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .skill-card:hover, .project-card:hover, .market-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaderboard, .recommended, .projects, .marketplace {
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">TalentGrind</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="connections.html">My Connections</a></li>
+                <li><a href="learnskill.html">Learn Skills</a></li>
+                <li><a href="teachskill.html">Teach Skills</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="network.html">Network</a></li>
+                <li><a href="firstpage.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile">
+            <img src="user-avatar.png" alt="User Avatar">
+            <h2>Welcome, Kolipaka Chakradhar</h2>
+            <p>SkillCoins Balance: <span class="coins">100</span> 💰</p>
+        </section>
+
+        <section class="recommended">
+            <h3>Recommended Skills to Learn</h3>
+            <div class="skill-list">
+                <div class="skill-card">
+                    <h4>Python Programming</h4>
+                    <button class="btn">Enroll Now</button>
+                </div>
+                <div class="skill-card">
+                    <h4>Graphic Design</h4>
+                    <button class="btn">Enroll Now</button>
+                </div>
+                <div class="skill-card">
+                    <h4>Web Development</h4>
+                    <button class="btn">Enroll Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="leaderboard">
+            <h3>Leaderboard - Top Mentors</h3>
+            <ol>
+                <li>🚀 Alice - 250 SkillCoins</li>
+                <li>🎖 Bob - 200 SkillCoins</li>
+                <li>🏅 Charlie - 180 SkillCoins</li>
+            </ol>
+        </section>
+
+        <section class="projects">
+            <h3>Top Projects</h3>
+            <div class="project-list">
+                <div class="project-card">
+                    <h4>AI Chatbot Development</h4>
+                    <button class="btn">See Project</button>
+                </div>
+                <div class="project-card">
+                    <h4>Logo Design Challenge</h4>
+                    <button class="btn">See Project</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="marketplace">
+            <h3>SkillCoin Marketplace</h3>
+            <div class="market-list">
+                <div class="market-card">
+                    <h4>E-Book: Web Development</h4>
+                    <p>50 SkillCoins</p>
+                    <button class="btn">Redeem</button>
+                </div>
+                <div class="market-card">
+                    <h4>Premium Course: Data Science Book</h4>
+                    <p>100 SkillCoins</p>
+                    <button class="btn">Redeem</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

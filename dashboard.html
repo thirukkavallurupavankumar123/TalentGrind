@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            gap: 1.5rem;
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+        }
+        .sidebar {
+            flex: 1;
+            background: #FFF6D5;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+        .tab-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(to right, #eac624, #e2ca97);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        .tab-btn:hover {
+            background: #C7741B;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .profile-container {
+            flex: 3;
+            background: #FFF6D5;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #C7741B;
+        }
+        .profile-image-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #fab15d;
+            overflow: hidden;
+            background: white;
+        }
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .upload-icon {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 50%;
+            padding: 6px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .followers-following {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .followers-following button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #f1cd29;
+            color: white;
+            cursor: pointer;
+        }
+        .profile-content {
+            padding: 20px 0;
+        }
+        .right {
+            flex: 1;
+            background: #FFF6D5;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .right input {
+            width: 90%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #8C5700;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar left">
+            <h2>Profile Sections</h2>
+            <button class="tab-btn" data-section="edit-profile">✏️ Edit Profile</button>
+            <button class="tab-btn" data-section="settings">⚙️ Settings</button>
+            <button class="tab-btn" data-section="skills">💡 Skills</button>
+            <button class="tab-btn" data-section="skill-coins">🏆 Skill Coins</button>
+            <button class="tab-btn" data-section="projects">📂 Projects</button>
+            <button class="tab-btn" data-section="certificates">📜 Certificates</button>
+        </div>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img id="profile-pic" src="default-profile.png" alt="Profile Picture">
+                    <label for="imageUpload" class="upload-icon">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+                    <input type="file" id="imageUpload" accept="image/*" style="display:none;">
+                </div>
+                <div class="user-details">
+                    <h1 id="profile-name"></h1>
+                    <p id="profile-bio"></p>
+                </div>
+            </div>
+            <div class="profile-content" id="profile-content">Select a section</div>
+        </div>
+        <div class="sidebar right">
+            <h2>My Profile</h2>
+            <input type="text" id="linkedin" placeholder="LinkedIn URL">
+            <input type="text" id="github" placeholder="GitHub URL">
+            <input type="text" id="portfolio" placeholder="Portfolio URL">
+            <input type="text" id="contact" placeholder="Contact Number">
+            <input type="text" id="email" placeholder="Email ID">
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>

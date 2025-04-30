@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Page</title>
+    
+    <!-- Google Font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .input-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .gender-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-container input[type="radio"],
+        .gender-container label {
+            margin-right: 15px;
+        }
+
+        .input-group input[type="checkbox"] {
+            margin-right: 0px;
+        }
+
+        .gender-container1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-container1 input[type="checkbox"],
+        .gender-container1 label {
+            margin-right: 15px;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .signup-btn:hover {
+            background: #218838;
+        }
+
+        .login-link {
+            margin-top: 10px;
+            display: block;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form id="signup-form" action="loginpage.html">
+            <div class="input-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label>Gender</label>
+                <div class="gender-container">
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female" required>
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="age">Age</label>
+                <input type="integer" id="age" placeholder="Enter your age" required>
+            </div>
+            <div class="input-group">
+                <label for="mobile_number">Mobile Number</label>
+                <select id="country-code">
+                    <option value="+1">🇺🇸 +1 (USA)</option>
+                    <option value="+91">🇮🇳 +91 (India)</option>
+                    <option value="+44">🇬🇧 +44 (UK)</option>
+                    <option value="+61">🇦🇺 +61 (Australia)</option>
+                    <option value="+81">🇯🇵 +81 (Japan)</option>
+                </select>
+                <input type="text" id="mobile_number" placeholder="Enter your mobile number" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Create your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password" required>
+                <small id="password-requirements" style="color: red; display: none;">
+                    - Must be at least 8 characters long<br>
+                    - Must contain at least 1 special character (@, #, $, etc.)<br>
+                    - Must contain at least 1 number (0-9)
+                </small>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                <small id="password-error" style="color: red; display: none;">Passwords do not match!</small>
+            </div>
+            
+            <div class="input-group">
+                <div class="gender-container1">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms"><a href="terms and conditions.html"></a>I agree to the Terms & Conditions</a></label>
+                </div>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        
+        <a href="loginpage.html" class="login-link">Already have an account? Login</a>
+        
+    </div>
+    <script src="signup.js" >   
+    </script>
+    <script>
+        const { fullName, gender, age, mobileNumber, email, username, password } = req.body;
+
+        if (!fullName || !gender || !age || !mobileNumber || !email || !username || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        res.json({
+            "message": "User registered successfully"
+        });
+    </script>
+</body>
+</html>

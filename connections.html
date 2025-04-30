@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Followed Users</title>
+  <style>
+    :root {
+      --primary-color: #41644A;
+      --secondary-color: #ffffff;
+      --background-color: #f0f4f8;
+      --text-color: #333333;
+      --hover-color: #41644A;
+      --button-color: #DC4E41;
+      --border-radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(45deg, #FFEB8E, #FCBD34);
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 85%;
+      max-width: 900px;
+      margin: 50px auto;
+      background: var(--secondary-color);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background: var(--secondary-color);
+      margin: 15px 0;
+      padding: 20px;
+      height: 49px;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      border: 1px solid #dcdcdc;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    li:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    li img {
+      border-radius: 50%;
+      margin-right: 20px;
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--primary-color);
+      transition: border-color 0.3s ease;
+    }
+
+    li:hover img {
+      border-color: var(--hover-color);
+    }
+
+    li span {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .view-profile-btn {
+      margin-left: auto;
+      padding: 10px 20px;
+      background-color: var(--button-color);
+      color: #fff;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-profile-btn:hover {
+      background-color: #adb50f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>People You Follow</h1>
+    <ul id="followedList">
+      <!-- Followed users will be dynamically inserted here -->
+    </ul>
+  </div>
+
+  <script>
+    // Sample followed user data (replace with dynamic backend data)
+    const followedUsers = [
+      { name: 'alice', avatar: 'https://i.pravatar.cc/50?u=alice@example.com', profileUrl: 'alice123' },
+      { name: 'pavan', avatar: 'https://i.pravatar.cc/50?u=pavan@example.com', profileUrl: 'pavan456' },
+      { name: 'chakradhar', avatar: 'https://i.pravatar.cc/50?u=chakri@example.com', profileUrl: 'chakri789' }
+    ];
+
+    function displayFollowedUsers() {
+  const list = document.getElementById('followedList');
+
+  followedUsers.forEach(user => {
+    const listItem = document.createElement('li');
+
+    const userLink = document.createElement('a');
+    userLink.href = '#';
+
+    const userAvatar = document.createElement('img');
+    userAvatar.src = user.avatar;
+    userAvatar.alt = `${user.name}'s avatar`;
+
+    const userName = document.createElement('span');  
+    userName.textContent = user.name;
+
+    // View Profile Button
+    const viewProfileButton = document.createElement('button');
+    viewProfileButton.classList.add('view-profile-btn');
+    viewProfileButton.textContent = 'View Profile';
+    viewProfileButton.onclick = () => {
+      window.location.href = `viewprofile.html?user=${user.profileUrl}`;
+    };
+
+    // Video Call Button
+    const videoCallButton = document.createElement('button');
+    videoCallButton.classList.add('view-profile-btn');
+    videoCallButton.style.marginLeft = '10px';
+    videoCallButton.textContent = 'Video Call';
+    videoCallButton.onclick = () => {
+      window.location.href = `videocall.html?user=${user.profileUrl}`;
+    };
+
+    userLink.appendChild(userAvatar);
+    userLink.appendChild(userName);
+    listItem.appendChild(userLink);
+    listItem.appendChild(viewProfileButton);
+    listItem.appendChild(videoCallButton); // Add Video Call button
+    list.appendChild(listItem);
+  });
+}
+window.onload = displayFollowedUsers;
+
+  </script>
+</body>
+</html>

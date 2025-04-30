@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentGrind Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Navbar */
+        header {
+            background: #fcbd34;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        /* Follow Requests Tag */
+        .requests {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Search Bar */
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .search-container input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Profile Card */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #fcbd34;
+        }
+
+        .profile h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .profile p {
+            margin: 2px 0;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Follow Button (Checkbox Trick) */
+        .follow-container {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .follow-checkbox {
+            display: none;
+        }
+
+        .follow-label {
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Default Follow Button */
+        .follow-label {
+            background: #28a745;
+            color: white;
+        }
+
+        /* When Checkbox is Checked (Followed) */
+        .follow-checkbox:checked + .follow-label {
+            background: #ccc;
+            color: #333;
+            pointer-events: none; /* Disable Clicking Again */
+            content: "Request Sent";
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        TalentGrind Network
+        <span class="requests">Requests (3)</span>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Search users...">
+    </div>
+
+    <div class="container">
+
+        <h3>Suggested Connections</h3>
+
+        <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="User 1">
+            <div>
+                <h4>John Doe</h4>
+                <p>@johndoe</p>
+            </div>
+            <div class="follow-container">
+                <input type="checkbox" id="follow1" class="follow-checkbox">
+                <label for="follow1" class="follow-label">Follow</label>
+            </div>
+        </div>
+
+        <div class="profile">
+            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="User 2">
+            <div>
+                <h4>Alice Smith</h4>
+                <p>@alice_smith</p>
+            </div>
+            <div class="follow-container">
+                <input type="checkbox" id="follow2" class="follow-checkbox">
+                <label for="follow2" class="follow-label">Follow</label>
+            </div>
+        </div>
+
+        <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="User 3">
+            <div>
+                <h4>Rahul Sharma</h4>
+                <p>@rahul_s</p>
+            </div>
+            <div class="follow-container">
+                <input type="checkbox" id="follow3" class="follow-checkbox">
+                <label for="follow3" class="follow-label">Follow</label>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

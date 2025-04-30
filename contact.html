@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Virtual Peer Tutoring Platform</title>
+    <link rel="stylesheet" href="contact.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        header {
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);
+            color: #fafcfa;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #41644A;
+            animation: bounce 2s infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333333;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out, letter-spacing 0.3s;
+        }
+
+        nav ul li a:hover {
+            transform: scale(1.1);
+            letter-spacing: 1px;
+        }
+
+        /* Logo Bounce Animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Contact Intro */
+        .contact-intro {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .contact-intro h1 {
+            font-size: 36px;
+            color: #DC4E41;
+        }
+
+        /* Contact Details */
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .contact-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slide-in 1s forwards;
+        }
+
+        .contact-box h3 {
+            color: #DC4E41;
+        }
+
+        /* Slide-in Animation */
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contact Form */
+        .contact-form {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .contact-form h2 {
+            color: #DC4E41;
+        }
+
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #contact-form label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        #contact-form input, 
+        #contact-form textarea {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        #contact-form input:focus, 
+        #contact-form textarea:focus {
+            box-shadow: 0 0 10px rgba(220, 78, 65, 0.6);
+        }
+
+        #contact-form button {
+            background: #DC4E41;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.1s;
+        }
+
+        #contact-form button:hover {
+            background-color: #41644A;
+        }
+
+        #contact-form button:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);
+            color: #DC4E41;
+            text-align: center;
+            padding: 10px 0;
+            animation: fade-in 1.5s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Talent Grind</div>
+            <ul>
+                <li><a href="firstpage.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sign-up_page.html">Signup</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-intro">
+            <h1>Contact Us </h1>
+            <p>We’re here to help! Whether you're a learner looking to gain new skills, a mentor eager to share knowledge, or an organization seeking collaboration, feel free to reach out and be part of the TalentGrind community.</p>
+        </section>
+
+        <section class="contact-details">
+            <div class="contact-box">
+                <h3>📍Cheeryal</h3>
+                <p>Geethanjali College of Engineering and Technology</p>
+            </div>
+            <div class="contact-box">
+                <h3>📧 Email</h3>
+                <p>Talentgrind@gmail.com</p>
+            </div>
+            <div class="contact-box">
+                <h3>📞 Phone</h3>
+                <p>+91 9959188311</p>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <h2>Get in Touch</h2>
+            <form id="contact-form">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" rows="5" placeholder="How can we help?" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Education to all</p>
+    </footer>
+
+</body>
+</html>

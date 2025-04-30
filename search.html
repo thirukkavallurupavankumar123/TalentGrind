@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Search</title>
+</head>
+<body>
+  <h1>Search a Skill</h1>
+  <input type="text" id="query" placeholder="Enter skill...">
+  <button onclick="searchSkill()">Search</button>
+
+  <div id="result"></div>
+
+  <script>
+    async function searchSkill() {
+      const query = document.getElementById('query').value;
+      const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+      const data = await res.json();
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      if (data.foundInDB) {
+        resultDiv.innerHTML = `<h2>Result from Database:</h2><p>${data.skillData}</p>`;
+      } else {
+        resultDiv.innerHTML = `
+          <h2>Top YouTube Result:</h2>
+          <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/${data.youtubeVideoId}" 
+            frameborder="0" allowfullscreen></iframe>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

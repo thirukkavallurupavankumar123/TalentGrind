@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Top Video Analyzer</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e40af;
+    }
+    .video-info {
+      margin-top: 2rem;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>YouTube Top Video Analyzer</h1>
+  <button onclick="handleAnalyze()">Analyze Top Video</button>
+  <p id="loading" style="display: none;">Analyzing...</p>
+
+  <div id="videoInfo" class="video-info"></div>
+
+  <script>
+    async function handleAnalyze() {
+      const loadingText = document.getElementById('loading');
+      const videoInfoDiv = document.getElementById('videoInfo');
+      videoInfoDiv.innerHTML = '';
+      loadingText.style.display = 'block';
+
+      try {
+        const res = await axios.get('/api/top-video');
+        const video = res.data;
+
+        videoInfoDiv.innerHTML = `
+          <h2>${video.title}</h2>
+          <img src="${video.thumbnail}" alt="${video.title}" />
+          <p>Views: ${video.views}</p>
+          <p>Likes: ${video.likes}</p>
+          <a href="https://www.youtube.com/watch?v=${video.videoId}" target="_blank">Watch on YouTube</a>
+        `;
+      } catch (err) {
+        videoInfoDiv.innerHTML = '<p style="color:red;">Error fetching video data.</p>';
+        console.error(err);
+      }
+
+      loadingText.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

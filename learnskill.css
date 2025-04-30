@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 600;
+   color:  #41644A;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Page Header */
+.learn-header {
+    text-align: center;
+    margin: 20px 0;
+    color: #41644A;
+
+}
+
+.learn-header input {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+/* Skill List */
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skill-card {
+    background: #FFEB8E;
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-card h4 {
+    margin-bottom: 5px;
+    color: #41644A;
+}
+
+.skill-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons */
+.btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Spend SkillCoins Button */
+.spend-skillcoins {
+    background: #FF5733;
+    color: white;
+}
+
+.spend-skillcoins:hover {
+    background: #D43F00;
+}

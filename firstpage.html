@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentGrind</title>
+    <style>
+        /* Smooth Page Load */
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #050505;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Full Page Layout */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header with Animated Gradient */
+        header {
+            background: linear-gradient(45deg, #FFEB8E, #FCBD34);
+            padding: 20px 0;
+            text-align: center;
+            animation: gradientMove 5s infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #41644A;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Rotating & Scaling Logo */
+        .logo:hover {
+            transform: rotate(-5deg) scale(1.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 18px;
+        }
+
+        /* Anchor Tag Hover Effect */
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        /* Scale Effect on Hover */
+        nav ul li a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Underline Animation */
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: #f8c14b;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Section */
+        .webremain {
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            animation: slideUp 1.5s ease-in-out forwards, zoomIn 2s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+
+        /* Typing Effect */
+        .slogan {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #f8c14b;
+            width: 0;
+            margin: 0 auto;
+            animation: typing 3s steps(30) forwards, blink 0.7s infinite alternate;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Image Animation */
+        img {
+            width: 300px;
+            display: block;
+            margin: 20px auto;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Call to Action */
+        .cta {
+            background-color: #FFEB8E;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: #333;
+            font-size: 26px;
+        }
+
+        .cta button {
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #f8c14b;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .cta button:hover {
+            background-color: #d89c3c;
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            opacity: 0;
+            animation: fadeInFooter 1s ease-in-out forwards 1.5s;
+        }
+
+        @keyframes fadeInFooter {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">Talent Grind</div>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="sign-up_page.html">Sign Up</a></li>
+                    <li><a href="loginpage.html">Login</a></li>  
+                </ul>
+            </nav>
+        </header>
+
+        <div class="webremain">
+            <h1 class="slogan">Grind Today, Dominate Tomorrow!</h1>
+            <img src="talent grind symbol.jpg" alt="Talent Grind Logo">
+            <p>TalentGrind is a student-driven skill-sharing platform where learning meets collaboration. Whether you want to teach, learn, or exchange skills, TalentGrind provides a seamless way to connect with peers, earn SkillCoins, and build your expertise. Join a thriving community of learners, challenge yourself with real-world projects, and get recognized for your achievements!</p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <h2>Start Your Learning Journey Today!</h2>
+            <button onclick="window.location.href='sign-up_page.html'">Join Now</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 TalentGrind. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

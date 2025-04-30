@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Virtual Peer Tutoring Platform</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #050505;
+        }
+
+        /* Navigation Bar */
+        header {
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);
+            padding: 15px 0;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #41644A;
+            animation: bounce 2s infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    display: inline-block;  /* Ensures transform works */
+    transition: transform 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+
+        /* Sections */
+        .about-intro, .how-it-works, .why-it-matters, .faq {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .about-intro h1 {
+            font-size: 36px;
+            color: #DC4E41;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .step {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .step:hover {
+            transform: scale(1.05);
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .step h3 {
+            color: #41644A;
+        }
+
+        /* FAQ */
+        details {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        details[open] {
+            background: #FFEB8E;
+            padding: 15px;
+        }
+
+        summary {
+            font-weight: bold;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        summary:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #FFEB8E, #FCBD34);
+            color: #DC4E41;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Talent Grind</div>
+            <ul>
+                <li><a href="firstpage.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="sign-up_page.html">Signup</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-intro">
+            <h1>About Our Platform</h1>
+            <p>"TalentGrind is a student-driven skill-sharing platform where you can teach, learn, and earn SkillCoins. Join a thriving community, exchange skills, and grow your expertise with real-world projects and mentorship!"</p>
+        </section>
+
+        <section class="how-it-works">
+            <h2 style="color: #DC4E41;">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Learn & Teach</h3>
+                    <p>Users list skills to teach and find skills to learn.</p>
+                </div>
+                <div class="step">
+                    <h3>2. Earn SkillCoins</h3>
+                    <p>Teach skills and earn SkillCoins as rewards.</p>
+                </div>
+                <div class="step">
+                    <h3>3. Skill Exchange</h3>
+                    <p>Swap skills, collaborate on projects, and engage in discussions.</p>
+                </div>
+                <div class="step">
+                    <h3>4. Get Recognized</h3>
+                    <p>Earn badges, certifications, and leaderboard rankings.</p>
+                </div>
+                <div class="step">
+                    <h3>5. Chat & Collaborate</h3>
+                    <p>Engage in discussions, Q&A, and group learning.</p>
+                </div>
+                <div class="step">
+                    <h3>6. Skill Marketplace</h3>
+                    <p>SkillCoins for exclusive learning resources.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-it-matters">
+            <h2 style="color: #DC4E41;">Why This Matters</h2>
+            <p>TalentGrind creates a dynamic and engaging learning environment where students can share knowledge and grow together. By teaching others, they earn SkillCoins, which can be used to learn new skills in return. Real-world projects and challenges provide valuable hands-on experience, preparing students for future careers.</p>
+        </section>
+
+        <section class="faq">
+            <h2 style="color: #DC4E41;">Frequently Asked Questions</h2>
+            <details>
+                <summary>Who can join the platform?</summary>
+                <p>Students, learners, and aspiring mentors who want to teach, learn, and grow through skill-sharing can join this program.</p>
+            </details>
+            <details>
+                <summary>How do I learn a new skill?</summary>
+                <p>Browse the Skill Exchange Board, find a skill, and use SkillCoins to request a session.</p>
+            </details>
+            <details>
+                <summary>What are SkillCoins?</summary>
+                <p>SkillCoins are the platform's virtual currency, earned by teaching and used to learn new skills.</p>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Talent Grind | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

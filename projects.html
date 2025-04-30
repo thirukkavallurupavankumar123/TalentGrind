@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Archive - TalentGrind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projects.css"> <!-- External CSS -->
+</head>
+<body>
+
+    <header>
+        <div class="logo">TalentGrind</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-header">
+            <h2>Project Archive</h2>
+            <p>Browse exciting projects. Spend SkillCoins to access project details.</p>
+        </section>
+
+        <!-- Upload Project Form -->
+        <section class="upload-project">
+            <h3>Upload a New Project</h3>
+            <form id="projectForm">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" required>
+
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option>AI/ML</option>
+                    <option>Web Development</option>
+                    <option>Data Science</option>
+                    <option>UI/UX</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="description">Project Description:</label>
+                <textarea id="description" rows="3" required></textarea>
+
+                <label for="skillCoins">SkillCoins Required:</label>
+                <input type="number" id="skillCoins" required min="10">
+
+                <label for="projectFile">Upload Project File:</label>
+                <input type="file" id="projectFile" accept=".pdf, .zip, .docx" required>
+
+                <button type="submit" class="btn">Submit Project</button>
+            </form>
+        </section>
+
+        <!-- My Projects Section -->
+        <section class="my-projects">
+            <h3>My Projects</h3>
+            <div id="my-projects-container">
+                <p>No projects uploaded yet.</p>
+            </div>
+        </section>
+
+        <!-- Available Projects -->
+        <section class="project-list">
+            <h3>Available Projects</h3>
+            <div id="projects-container"></div>
+        </section>
+    </main>
+
+    <script>
+        let userSkillCoins = 120; // Example user balance
+        let myProjects = []; // Array to store user's uploaded projects
+
+        function fetchProjects() {
+            const projects = [
+                { name: "AI Chatbot for Customer Support", description: "Develop an AI chatbot for real-time customer queries.", uploader: "John Doe", cost: 30 },
+                { name: "E-Commerce Website with React", description: "A seamless e-commerce platform with secure payment integration.", uploader: "Alice Smith", cost: 40 },
+                { name: "Data Analysis Tool for Stock Market", description: "A tool to predict stock trends using machine learning.", uploader: "Rahul Sharma", cost: 50 }
+            ];
+
+            const projectContainer = document.getElementById("projects-container");
+            projectContainer.innerHTML = "";
+
+            projects.forEach(project => {
+                const projectCard = document.createElement("div");
+                projectCard.classList.add("project-card");
+                projectCard.innerHTML = `
+                    <h4>${project.name}</h4>
+                    <p>${project.description}</p>
+                    <p><strong>Uploaded by:</strong> ${project.uploader}</p>
+                    <p><strong>Access Cost:</strong> <span class="coin-cost">${project.cost} SkillCoins</span></p>
+                    <button class="btn spend-skillcoins" data-coins="${project.cost}">Spend ${project.cost} SkillCoins</button>
+                `;
+                projectContainer.appendChild(projectCard);
+            });
+
+            document.querySelectorAll(".spend-skillcoins").forEach(button => {
+                button.addEventListener("click", function () {
+                    let cost = parseInt(this.getAttribute("data-coins"));
+                    if (userSkillCoins >= cost) {
+                        userSkillCoins -= cost;
+                        alert("Project Unlocked! Remaining SkillCoins: " + userSkillCoins);
+                    } else {
+                        alert("Not enough SkillCoins to access this project.");
+                    }
+                });
+            });
+        }
+
+        document.getElementById("projectForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const projectData = {
+                name: document.getElementById("projectName").value,
+                category: document.getElementById("category").value,
+                description: document.getElementById("description").value,
+                skillCoins: document.getElementById("skillCoins").value
+            };
+
+            myProjects.push(projectData);
+            updateMyProjects();
+
+            alert("Project Uploaded Successfully!");
+            document.getElementById("projectForm").reset();
+        });
+
+        function updateMyProjects() {
+            const myProjectsContainer = document.getElementById("my-projects-container");
+            myProjectsContainer.innerHTML = "";
+
+            if (myProjects.length === 0) {
+                myProjectsContainer.innerHTML = "<p>No projects uploaded yet.</p>";
+                return;
+            }
+
+            myProjects.forEach(project => {
+                const projectCard = document.createElement("div");
+                projectCard.classList.add("project-card");
+                projectCard.innerHTML = `
+                    <h4>${project.name}</h4>
+                    <p>${project.description}</p>
+                    <p><strong>Category:</strong> ${project.category}</p>
+                    <p><strong>Access Cost:</strong> <span class="coin-cost">${project.skillCoins} SkillCoins</span></p>
+                `;
+                myProjectsContainer.appendChild(projectCard);
+            });
+        }
+
+        fetchProjects();
+    </script>
+
+</body>
+</html>

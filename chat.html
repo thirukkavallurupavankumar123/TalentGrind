@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - LinkedIn Style</title>
+
+  <!-- Firebase SDK (Ensure it's loaded first) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #DC4E41;
+      --secondary-color: #ffffff;
+      --background-color: #f3f2ef;
+      --text-color: #333;
+      --border-color: #ddd;
+      --hover-color: #005582;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+    }
+    .container {
+      width: 80%;
+      max-width: 900px;
+      margin: 50px auto;
+      background: var(--secondary-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+    .profile-header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--primary-color);
+    }
+    .profile-header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+    .message-btn {
+      background: #41644A;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: block;
+      width: fit-content;
+      margin: 10px 0;
+    }
+    .message-btn:hover {
+      background: var(--hover-color);
+    }
+    #chatContainer {
+      display: none;
+      width: 100%;
+      height: 400px;
+      background-color: #f3f2ef;
+      border-top: 2px solid #ddd;
+      padding: 20px;
+    }
+    #chatMessages {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: white;
+    }
+    #messageInput {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    #sendMessage {
+      padding: 10px;
+      background: #41644A;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile-header">
+      <img src="https://i.pravatar.cc/150?u=alice@example.com" alt="User Avatar">
+      <div>
+        <h1>Alice Johnson</h1>
+        <p>Software Engineer | Web Developer | Tech Enthusiast</p>
+        <button class="message-btn" onclick="openChatModule()">Message</button>
+      </div>
+    </div>
+    <div id="chatContainer">
+      <h2>Chat with Alice</h2>
+      <div id="chatMessages"></div>
+      <input type="text" id="messageInput" placeholder="Type a message...">
+      <button id="sendMessage">Send</button>
+    </div>
+  </div>
+
+  <!-- Firebase Chat Script -->
+  <script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    // ✅ Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBUcnvd5NyKMzHJbCtcS1829OJ1OJIB2zE",
+      authDomain: "talent-grind-9f8fd.firebaseapp.com",
+      databaseURL: "https://talent-grind-9f8fd-default-rtdb.firebaseio.com/",
+      projectId: "talent-grind-9f8fd",
+      storageBucket: "talent-grind-9f8fd.appspot.com",
+      messagingSenderId: "830813778451",
+      appId: "1:830813778451:web:4f33edaf8330c3aedb05e6"
+    };
+
+    // ✅ Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // ✅ Open Chat Box
+    window.openChatModule = function() {
+      document.getElementById('chatContainer').style.display = 'block';
+    };
+
+    // ✅ Handle Message Sending
+    document.addEventListener("DOMContentLoaded", () => {
+      const sendMessageButton = document.getElementById('sendMessage');
+      const messageInput = document.getElementById('messageInput');
+      const chatMessages = document.getElementById('chatMessages');
+
+      sendMessageButton.addEventListener('click', () => {
+        const message = messageInput.value.trim();
+        if (message !== "") {
+          push(ref(db, 'messages'), {  // ✅ Use `ref(db, 'messages')` for correct path
+            sender: "User",
+            text: message
+          }).then(() => {
+            console.log("✅ Message Sent!");
+            messageInput.value = "";
+          }).catch((error) => {
+            console.error("❌ Error sending message:", error);
+          });
+        } else {
+          console.warn("⚠️ Cannot send an empty message!");
+        }
+      });
+
+      // ✅ Listen for new messages & update UI
+      onChildAdded(ref(db, 'messages'), (snapshot) => {
+        const msg = snapshot.val();
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = `${msg.sender}: ${msg.text}`; // ✅ Fixed template string syntax
+        chatMessages.appendChild(msgDiv);
+        
+        // ✅ Auto-scroll to the latest message
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+    });
+  </script>
+
+</body>
+</html>

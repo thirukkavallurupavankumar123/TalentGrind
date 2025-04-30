@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #FFEB8E, #FCBD34);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 600;
+    color:#41644A;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Teach Skill Form */
+.teach-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.teach-skill-form {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.teach-skill-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.teach-skill-form label {
+    font-weight: 500;
+    margin: 10px 0 5px;
+}
+
+.teach-skill-form input, .teach-skill-form select, .teach-skill-form textarea {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.teach-skill-form button {
+    margin-top: 10px;
+}
+
+/* Buttons */
+.btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #218838;
+}
